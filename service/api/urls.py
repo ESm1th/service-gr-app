@@ -1,0 +1,99 @@
+from django.urls import path
+
+from . import views
+
+
+app_name = 'api'
+
+urlpatterns = [
+    path(
+        'countries/',
+        views.CountryListCreate.as_view(),
+        name='countries'
+    ),
+    path(
+        'countries/<int:pk>/',
+        views.CountryRetriveUpdateDelete.as_view(),
+        name='country'
+    ),
+    path(
+        'cities/',
+        views.CityListCreate.as_view(),
+        name='cities'
+    ),
+    path(
+        'cities/<int:pk>/',
+        views.CityRetriveUpdateDelete.as_view(),
+        name='city'
+    ),
+    path(
+        'clients/',
+        views.ClientListCreate.as_view(),
+        name='clients'
+    ),
+    path(
+        'clients/<int:pk>/',
+        views.ClientRetriveUpdateDelete.as_view(),
+        name='client'
+    ),
+    path(
+        'deliveries/',
+        views.DeliveryListCreate.as_view(),
+        name='deliveries'
+    ),
+    path(
+        'deliveries/<int:pk>/',
+        views.DeliveryRetriveUpdateDelete.as_view(),
+        name='delivery'
+    ),
+    path(
+        'storage-units/',
+        views.StorageUnitTypeListCreate.as_view(),
+        name='storage-units'
+    ),
+    path(
+        'storage-units/<int:pk>/',
+        views.StorageUnitTypeRetriveUpdateDelete.as_view(),
+        name='storage-unit'
+    ),
+    path(
+        'handling-units/',
+        views.HandlingUnitListCreate.as_view(),
+        name='handling-units'
+    ),
+    path(
+        'handling-units/<int:pk>/',
+        views.HandlingUnitRetriveUpdateDelete.as_view(),
+        name='handling-unit'
+    ),
+    path(
+        'material-types/',
+        views.MaterialTypeListCreate.as_view(),
+        name='material-types'
+    ),
+    path(
+        'material-types/<int:pk>/',
+        views.MaterialTypeRetriveUpdateDelete.as_view(),
+        name='material-type'
+    ),
+    path(
+        'materials/',
+        views.MaterialListCreate.as_view(),
+        name='materials'
+    ),
+    path(
+        'materials/<int:pk>/',
+        views.MaterialRetriveUpdateDelete.as_view(),
+        name='material'
+    ),
+    path(
+        'equipment-list/',
+        views.EquipmentListCreate.as_view(),
+        name='equipment-list'
+    ),
+    path(
+        'equipment-list/<int:pk>/',
+        views.EquipmentRetriveUpdateDelete.as_view(),
+        name='equipment'
+    ),
+]
