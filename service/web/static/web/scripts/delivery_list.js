@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         * Create delivery by ajax request to rest api and add new delivery card.
         */
         let path = event.target.getAttribute('data-url');
-
         let form_data = new FormData(document.getElementById('create_delivery_form'));
         let data = {};
 
@@ -19,23 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.open('POST', window.location.origin + path + '?format=html');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('X-CSRFToken', document.getElementsByName('csrfmiddlewaretoken')[0].value);
-
         xhr.onload = function () {
-            let delivery = xhr.responseText;
             if (xhr.status == 201) {
-                
-                let delivery_rows = document.getElementsByClassName('deliveries-row');
-                let last_row = delivery_rows[delivery_rows.length - 1]
-                
-                if (last_row.length < 4) {
-                    last_row.appendChild(delivery);
-                } else {
-                    let new_delivery_row = document.createElement('div');
-                    new_delivery_row.className = 'deliveries-row d-flex w-100';
-                    new_delivery_row.innerHTML = delivery;
-                    document.getElementsByClassName('deliveries')[0].appendChild(new_delivery_row);
-                };
-
+                let deliveries = document.getElementsByClassName('deliveries')[0];
+                let div = document.createElement('div');
+                div.innerHTML = xhr.responseText.trim();
+                deliveries.appendChild(div.firstChild);
             } else {
                 // to do: error processing
             }

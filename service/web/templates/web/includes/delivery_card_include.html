@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="card bg-light mb-3 w-25">
+<div class="card bg-light mb-3">
     <div class="card-header d-flex justify-content-around p-2">
         <p class="m-0">{{ delivery.client }}</p>
         {% if delivery.active %}
@@ -17,14 +17,6 @@
         <li class="list-group-item p-2">
             <p class="badge badge-primary mb-0 w-50">{% trans 'Time' %}</p>
             <p class="badge badge-secondary mb-0">{{ delivery.time }}</p>
-        </li>
-        <li class="list-group-item p-2">
-            <p class="badge badge-primary mb-0 w-50">{% trans 'Total units' %}</p>
-            <p class="badge badge-secondary mb-0">{{ delivery.units_quantity }}</p>
-        </li>
-        <li class="list-group-item p-2">
-            <p class="badge badge-primary mb-0 w-50">{% trans 'Received' %}</p>
-            <p class="badge badge-secondary mb-0">{{ delivery.units.count }}</p>
         </li>
     </ul>
     <a href="#" class="card-footer text-dark border-0">{% trans 'Check delivery' %}</a>
