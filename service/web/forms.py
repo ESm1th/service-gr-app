@@ -25,6 +25,8 @@ class DeliveryForm(forms.ModelForm):
             self.fields[name].widget.attrs.update(
                 {'class': 'form-control shadow-sm'}
             )
+            if name == 'client':
+                self.fields[name].empty_label = '-'
 
     class Meta:
         model = models.Delivery
