@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from . import models
+from web import models
 
 
 class CountrySerializer(ModelSerializer):
@@ -22,7 +22,7 @@ class ClientSerializer(ModelSerializer):
 
 
 class DeliverySerializer(ModelSerializer):
-    client = ClientSerializer()
+    # client = ClientSerializer()
 
     class Meta:
         model = models.Delivery
