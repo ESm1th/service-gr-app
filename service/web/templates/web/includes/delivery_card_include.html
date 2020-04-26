@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="card bg-light mb-3">
-    <div class="card-header d-flex justify-content-around p-2">
+    <div class="card-header d-flex justify-content-between flex-wrap pl-4 pr-4">
         <p class="m-0">{{ delivery.client }}</p>
         {% if delivery.active %}
             <p class="badge badge-success mb-0">{% trans 'In process' %}</p>
@@ -10,14 +10,14 @@
         {% endif %}
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item p-2">
-            <p class="badge badge-primary mb-0 w-50">{% trans 'Date' %}</p>
-            <p class="badge badge-secondary mb-0">{{ delivery.date }}</p>
+        <li class="list-group-item p-2 d-flex justify-content-between pl-4 pr-4">
+            <p class="mb-0 pr-2">{% trans 'Date' %}</p>
+            <p class="mb-0">{{ delivery.date }}</p>
         </li>
-        <li class="list-group-item p-2">
-            <p class="badge badge-primary mb-0 w-50">{% trans 'Time' %}</p>
-            <p class="badge badge-secondary mb-0">{{ delivery.time }}</p>
+        <li class="list-group-item p-2 d-flex justify-content-between pl-4 pr-4">
+            <p class="mb-0 pr-2">{% trans 'Time' %}</p>
+            <p class="mb-0">{{ delivery.time }}</p>
         </li>
     </ul>
-    <a href="#" class="card-footer text-dark border-0">{% trans 'Check delivery' %}</a>
+    <a href="#" class="card-footer text-dark border-0 pl-4">{% trans 'Check delivery' %}</a>
 </div>

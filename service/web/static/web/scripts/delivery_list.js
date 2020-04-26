@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let div = document.createElement('div');
                 div.innerHTML = xhr.responseText.trim();
                 deliveries.appendChild(div.firstChild);
+                $('#create_delivery').modal('hide');
             } else {
                 // to do: error processing
             }
