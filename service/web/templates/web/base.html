@@ -1,0 +1,44 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'web/bootstrap-4.4.1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'web/styles/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    {% block styles %}{% endblock %}
+    {% block head %}{% endblock %}
+    <title>{% block title %}Base{% endblock %}</title>
+</head>
+<body class="bg-light h-100">
+    
+    <div class="container-fluid h-100">
+        <div class="row custom-nav shadow">
+            <div class="col text-dark d-flex align-items-center justify-content-center">
+                <h2>SC receipte</h2>
+            </div>
+            <div class="col d-flex justify-content-start align-items-center">
+                <ul class="header-links text-dark d-flex m-0 justify-content-around w-50">
+                    <li><a class="text-dark" href="{% url 'web:deliveries' %}">{% trans 'Deliveries' %}</a></li>
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a class="text-dark" href="#">Sign out</a>
+                        {% else %}
+                            <a class="text-dark" href="#">Sign in</a>
+                        {% endif %}
+                    </li>
+                    <li><a class="text-dark" href="#">Faq</a></li>
+                    <li><a class="text-dark" href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="{% static 'web/bootstrap-4.4.1-dist/js/bootstrap.bundle.js' %}"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>

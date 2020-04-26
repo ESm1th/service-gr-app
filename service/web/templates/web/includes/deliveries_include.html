@@ -1,0 +1,9 @@
+{% load static i18n %}
+
+{% for row in rows %}
+    <div class="deliveries-row d-flex w-100">
+        {% for delivery in row %}
+            {% include 'web/includes/delivery_card_include.html' %}
+        {% endfor %}
+    </div>
+{% endfor %}
