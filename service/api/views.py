@@ -2,8 +2,9 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView
 )
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
-from . import models
+from web import models
 from . import serializers
 
 
@@ -45,6 +46,15 @@ class ClientRetriveUpdateDelete(RetrieveUpdateDestroyAPIView):
 class DeliveryListCreate(CreatorMixin, ListCreateAPIView):
     queryset = models.Delivery.objects.all()
     serializer_class = serializers.DeliverySerializer
+    renderer_classes = [JSONRenderer, TemplateHTMLRenderer, ]
+
+    def post(self, request, format=None, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if request.accepted_renderer.format == 'html':
+            delivery = self.get_queryset().get(id=response.data['id'])
+            response.data = {'delivery': delivery, }
+            response.template_name = 'web/includes/delivery_card_include.html'
+        return response
 
 
 class DeliveryRetriveUpdateDelete(RetrieveUpdateDestroyAPIView):
