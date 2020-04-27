@@ -15,11 +15,54 @@
                     <p class="mb-0 text-primary">{% trans 'Received' %}</p>
                 {% endif %}
             </div>
-            <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#create_delivery">{% trans 'Create handling unit' %}</button>
+            <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#create_hu">{% trans 'Create handling unit' %}</button>
             {% if delivery.handling_units.all %}
+                {% for unit in delivery.handling_units.all %}
+                    {% include 'web/includes/handling_unit_card_include.html' %}
+                {% endfor %}
             {% else %}
                 <p>{% trans 'Delivery has not handling units yet.' %}</p>
             {% endif %}
         </div>
     </div>
+    <div class="modal fade" id="create_hu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{% trans 'Create handling unit' %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form id="create_hu_form" class="m-0 w-100" action="#" method="post">
+                        {{ form.media.css }}
+                        {% csrf_token %}
+                    
+                        {% for hidden in form.hidden_fields %}
+                            {{  hidden }}
+                        {% endfor %}
+                    
+                        {% for field in form.visible_fields %}
+                            <div class="form-group{% if field.name == 'type' %} d-flex flex-column{% endif %}">
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <span class="help-block">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Close' %}</button>
+                        <button id="create_hu_btn" type="button" class="btn btn-primary" data-url="{% url 'api:handling-units' %}">{% trans 'Create handling unit' %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ form.media.js }}
 {% endblock %}

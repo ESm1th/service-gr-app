@@ -72,13 +72,14 @@ def equipment(handling_unit, material):
     )
 
 
-def test_handling_unit_in_delivery(self, delivery, storage_unit_type):
+def test_handling_unit_in_delivery(delivery, storage_unit_type):
     handling_unit = models.HandlingUnit.objects.create(
         number=1,
         delivery=delivery,
         type=storage_unit_type
     )
     assert handling_unit in delivery.handling_units.all()
+    assert delivery.handling_units.count() == 1
 
 
 def test_material_in_delivery(

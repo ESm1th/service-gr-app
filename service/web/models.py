@@ -95,6 +95,7 @@ class HandlingUnit(Base):
     title = None
 
     class Meta:
+        unique_together = ('id', 'number')
         verbose_name = _('handling unit')
         verbose_name_plural = _('handling units')
 
