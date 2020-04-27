@@ -19,5 +19,5 @@
             <p class="mb-0">{{ delivery.time }}</p>
         </li>
     </ul>
-    <a href="#" class="card-footer text-dark border-0 pl-4">{% trans 'Check delivery' %}</a>
+    <a href="{% url 'web:delivery' delivery.pk %}" class="card-footer text-dark border-0 pl-4">{% trans 'Check delivery' %}</a>
 </div>
