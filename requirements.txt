@@ -2,5 +2,6 @@ django==3.0.5
 djangorestframework==3.11.0
 django-select2==7.2.3
 django-tempus-dominus==5.1.2.13
+pytest-django==3.9.0
 flake8==3.7.9
 
